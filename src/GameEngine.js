@@ -28,7 +28,7 @@ export default function GameEngine (type) {
         state.currentWord = GetNextWord(state.numWordsTypedSuccessfully);
         state.actorPosition = UpdateActorPosition(state.actorPosition);
         if ((state.actorPosition - state.hiddenPlatforms) >= 7){
-            state.hiddenPlatforms = state.hiddenPlatforms + 2;
+            state.hiddenPlatforms += 2;
         }
         return state;
     };

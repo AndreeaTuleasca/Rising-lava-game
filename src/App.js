@@ -18,6 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <ScoreDisplay {...this.state} />
         <GameBoard {...this.state} />
       </div>
     );

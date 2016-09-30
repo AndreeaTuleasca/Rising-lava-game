@@ -21,7 +21,7 @@ export default function GameEngine (type) {
         return {
             timeScale: 1,
             gameState: 'in-progress'
-        };    
+        };
     }
 
     this.togglePause = function(state){
@@ -57,7 +57,7 @@ export default function GameEngine (type) {
 
         const actorPosition = (state.actorPosition+1) * state.gridSegmentHeight;
         var distance = Math.round(actorPosition - lavaHeight);
-        
+
         let res = {
             lavaHeight: lavaHeight,
             distance: distance
@@ -66,6 +66,11 @@ export default function GameEngine (type) {
         if(distance <= 0){
             res.gameState = 'game-over';
             res.timeScale = 0;
+            res.highestScore = Math.max(state.score, state.highestScore || 0)
+        }
+
+        if(res.highestScore) {
+          localStorage.setItem('highestScore', res.highestScore);
         }
 
         return res;

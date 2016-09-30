@@ -18,6 +18,7 @@ class App extends Component {
       lavaHeight: 100,
       lavaSpeed: 1,
       score: 0,
+      highestScore: +localStorage.getItem('highestScore'),
       wordsTypedSuccessfully: 0,
       scoreMultiplier: 1,
       distance: 0, // distance multipler * (lavaPosition - actorPlatformIndex) ??
@@ -48,7 +49,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="game-info">
-          <ScoreDisplay score={this.state.score}/>
+          <ScoreDisplay score={this.state.score} highestScore={this.state.highestScore}/>
           <DistanceDisplay distance={this.state.distance}/>
         </div>
         <GameBoard {...this.state}/>
@@ -72,9 +73,9 @@ class App extends Component {
     }
 
     let matchedLetters = this.state.word.charAt(this.state.matchedLetters) === event.key ?
-      this.state.matchedLetters + 1: 
+      this.state.matchedLetters + 1:
       0;
-    this.setState({matchedLetters}); 
+    this.setState({matchedLetters});
 
     if(this.state.word.length === matchedLetters){
         this.next();

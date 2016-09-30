@@ -57,13 +57,20 @@ class App extends Component {
   }
 
   checkWord(event){
+    if ((this.state.gameState === 'in-progress' || this.state.gameState === 'paused' ) && event.key === "Escape"){
+      let nextState = this.gameEngine.togglePause(this.state);
+      this.setState(nextState);
+    }
+
     if(this.state.gameState === 'not-started'){
       let nextState = this.gameEngine.startGame();
       this.setState(nextState);
     }
-    if(this.state.gameState !== 'in-progress'){
+
+    if(this.state.gameState !== 'in-progress' || this.state.timeScale === 0 ){
       return;
     }
+
     let matchedLetters = this.state.word.charAt(this.state.matchedLetters) === event.key ?
       this.state.matchedLetters + 1: 
       0;

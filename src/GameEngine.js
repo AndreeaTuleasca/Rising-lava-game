@@ -24,6 +24,13 @@ export default function GameEngine (type) {
         };    
     }
 
+    this.togglePause = function(state){
+        return {
+            gameState: state.timeScale === 0 ? "in-progress" : "paused",
+            timeScale: state.timeScale === 0 ? 1 : 0
+        };
+    }
+
     this.GetNextWord = function(numWordsTypedSuccessfully){
         return randomWord(Math.floor(numWordsTypedSuccessfully/10) + 3);
     }

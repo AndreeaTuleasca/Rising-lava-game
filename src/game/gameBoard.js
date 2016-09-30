@@ -16,7 +16,7 @@ class GameBoard extends Component {
         }
 
         const actorIndex = this.props.actorPosition - this.props.hiddenPlatforms;
-        const effectiveLavaHeight = this.props.lavaHeight - (this.props.gridSegmentHeight * this.props.hiddenPlatforms)
+        const effectiveLavaHeight = Math.max(this.props.lavaHeight - (this.props.gridSegmentHeight * this.props.hiddenPlatforms), 0);
 
         return (
             <div className="game-board">

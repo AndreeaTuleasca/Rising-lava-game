@@ -2,15 +2,19 @@ var randomWord = require('random-word-by-length');
 
 export default function GameEngine (type) {
     function UpdateScore(currentScore, currentMultiplier, currentWord){
-        return currentScore + currentWord.length * currentMultiplier;
+        var wordLength = 3;
+        if (currentWord){
+            wordLength = currentWord.length;
+        }
+        return currentScore + wordLength * currentMultiplier;
     }
 
     function UpdateLavaSpeed(numWordsTypedSuccessfully, currentLavaSpeed){
         return currentLavaSpeed + 1;
     }
 
-    function UpdateActorPosition(){
-        
+    function UpdateActorPosition(actorPosition){
+        return actorPosition + 1;
     }
 
     function GetNextWord(numWordsTypedSuccessfully){
@@ -22,7 +26,10 @@ export default function GameEngine (type) {
         state.currentScore = UpdateScore(state.score, state.currentMultiplier, state.currentWord);
         state.currentLavaSpeed = UpdateLavaSpeed(state.currentLavaSpeed);
         state.currentWord = GetNextWord(state.numWordsTypedSuccessfully);
-        UpdateActorPosition();
+        state.actorPosition = UpdateActorPosition(state.actorPosition);
+        if ((state.actorPosition - state.hiddenPlatforms) >= 7){
+            state.hiddenPlatforms = state.hiddenPlatforms + 2;
+        }
         return state;
     };
 

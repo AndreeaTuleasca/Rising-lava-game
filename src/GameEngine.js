@@ -17,6 +17,13 @@ export default function GameEngine (type) {
         return actorPosition + 1;
     }
 
+    this.startGame = function(){
+        return {
+            timeScale: 1,
+            gameState: 'in-progress'
+        };    
+    }
+
     this.GetNextWord = function(numWordsTypedSuccessfully){
         return randomWord(Math.floor(numWordsTypedSuccessfully/10) + 3);
     }

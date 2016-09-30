@@ -21,16 +21,18 @@ class App extends Component {
       wordsTypedSuccessfully: 0,
       scoreMultiplier: 1,
       distance: 0, // distance multipler * (lavaPosition - actorPlatformIndex) ??
-      timeScale: 1, // double between 0 and 1,
+      timeScale: 0, // double between 0 and 1,
       gameState: 'not-started', // in-progress, game-over,
       hiddenPlatforms: 0, // the number platforms that have gone out of the view
       next: this.next // This is for the word-typing component to cal
     }
   }
 
-  update(){
-      var updatedState = this.gameEngine.update(this.state);
-      this.setState(updatedState);
+  update(){ this.updateState(this.gameEngine.update); }
+
+  updateState(fn){
+    var updatedState = fn(this.state);
+    this.setState(updatedState);
   }
 
   componentDidMount(){
@@ -53,6 +55,13 @@ class App extends Component {
   }
 
   checkWord(event){
+    if(this.state.gameState === 'not-started'){
+      let nextState = this.gameEngine.startGame();
+      this.setState(nextState);
+    }
+    if(this.state.gameState !== 'in-progress'){
+      return;
+    }
     let matchedLetters = this.state.word.charAt(this.state.matchedLetters) === event.key ?
       this.state.matchedLetters + 1: 
       0;

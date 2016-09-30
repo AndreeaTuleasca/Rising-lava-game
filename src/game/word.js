@@ -16,24 +16,20 @@ class Word extends Component {
         "col-"+(this.props.position % 2)
       ]);
         return (
-            <div className="word">this is word placed at: {this.props.position}
-                <div>
-                    <input type="text" value={this.state.typedWord} onChange={this.handleChange.bind(this)}/>
-                </div>
+            <div className={className}>
+                {this.props.word.split('').map((char, index) => {
+                    var classes = [];
+                    if(index < this.props.matchedLetters) {
+                        classes.push("correct");
+                    }
+                    classes = classNames(classes)
+
+                    return (
+                        <span className={classes}>{char}</span>
+                    )   
+                })}
             </div>
         );
-    }
-
-    handleChange(event){
-         let word = event.target.value;
-         let lastLetterIndex = word.length-1;
-         let lastLetter = word.charAt(lastLetterIndex);
-         if(this.word.charAt(lastLetterIndex) === lastLetter){
-            this.setState({typedWord: event.target.value}); 
-         }
-         if(this.word === word){
-             console.log('word correct');
-         }
     }
 }
 

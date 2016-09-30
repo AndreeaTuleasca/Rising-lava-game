@@ -1,16 +1,16 @@
 var randomWord = require('random-word-by-length');
 
 export default function GameEngine (type) {
-    function UpdateScore(currentScore, currentMultiplier, currentWord){
+    function UpdateScore(state){
         var wordLength = 3;
-        if (currentWord){
-            wordLength = currentWord.length;
+        if (state.word){
+            wordLength = state.word.length;
         }
-        return currentScore + wordLength * currentMultiplier;
+        return state.score + wordLength * state.scoreMultiplier;
     }
 
-    function UpdateLavaSpeed(numWordsTypedSuccessfully, currentLavaSpeed){
-        return currentLavaSpeed + 1;
+    function UpdateLavaSpeed(state){
+        return state.lavaSpeed + 0.1;
     }
 
     function UpdateActorPosition(actorPosition){
@@ -18,28 +18,38 @@ export default function GameEngine (type) {
     }
 
     function GetNextWord(numWordsTypedSuccessfully){
-        return randomWord(Math.floor(numWordsTypedSuccessfully/10));
+        return randomWord(Math.floor(numWordsTypedSuccessfully/10) + 3);
     }
 
     // To be called once a word-typing engine
     this.Next = function(state){
-        state.currentScore = UpdateScore(state.score, state.currentMultiplier, state.currentWord);
-        state.currentLavaSpeed = UpdateLavaSpeed(state.currentLavaSpeed);
-        state.currentWord = GetNextWord(state.numWordsTypedSuccessfully);
-        state.actorPosition = UpdateActorPosition(state.actorPosition);
-        if ((state.actorPosition - state.hiddenPlatforms) >= 7){
-            state.hiddenPlatforms += 1;
+        let res = {
+            score: UpdateScore(state),
+            lavaSpeed: UpdateLavaSpeed(state),
+            word: GetNextWord(state.wordsTypedSuccessfully),
+            actorPosition: UpdateActorPosition(state.actorPosition),
+            matchedLetters: 0,
+            wordsTypedSuccessfully: state.wordsTypedSuccessfully + 1
         }
-        return state;
+
+        if ((res.actorPosition - state.hiddenPlatforms) >= 7){
+            res.hiddenPlatforms = state.hiddenPlatforms + 1;
+        }
+        return res;
     };
 
-    // To be called by lava to update GUI
-    this.UpdateDistance = function(){
-        
-    }
+    this.update= function(state){
+        let res = {
+            lavaHeight: state.lavaHeight + (state.lavaSpeed * state.timeScale) 
+        };
 
-    // To be called by lava if it touches the player avatar
-    this.KillPlayer = function(){
-        // Toggle game over here
+        const actorPosition = (state.actorPosition+1) * state.gridSegmentHeight;
+        var distance = actorPosition - res.lavaHeight; 
+        if(distance < -15){
+            res.gameState = 'game-over';
+            res.timeScale = 0;
+        }
+
+        return res;
     };
 }

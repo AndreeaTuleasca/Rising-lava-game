@@ -6,6 +6,7 @@ import Lava from './lava'
 import Platform from './platform'
 import Word from './word'
 import Actor from './actor'
+import PauseOverlay from './pauseOverlay'
 
 class GameBoard extends Component {
     render(){
@@ -30,6 +31,7 @@ class GameBoard extends Component {
                 <Actor position={this.props.actorPosition} index={actorIndex} />
                 <Word position={this.props.actorPosition+1} index={actorIndex+1} matchedLetters={this.props.matchedLetters} word={this.props.word}/>
                 <Lava height={effectiveLavaHeight} />
+                <PauseOverlay timeScale={this.props.timeScale} gameState={this.props.gameState} />
             </div>
         );
     }

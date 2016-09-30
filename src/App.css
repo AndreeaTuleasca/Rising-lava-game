@@ -36,6 +36,10 @@ body {
   overflow: hidden;
 }
 
+.game-board.paused {
+  filter: blur(5px);
+}
+
 .game-board .sprite {
   position: absolute;
 }

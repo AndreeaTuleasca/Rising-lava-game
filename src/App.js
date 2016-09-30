@@ -16,7 +16,7 @@ class App extends Component {
       gridSegmentHeight: 60, // constant
       actorPosition: 3, // word position is always actor position + 1
       lavaHeight: 100,
-      lavaSpeed: 10,
+      lavaSpeed: 1,
       score: 0,
       wordsTypedSuccessfully: 0,
       scoreMultiplier: 1,
@@ -34,8 +34,7 @@ class App extends Component {
   }
 
   componentDidMount(){
-    setInterval(this.update.bind(this), 1000);
-
+    setInterval(this.update.bind(this), 50);
     document.addEventListener('keyup', this.checkWord.bind(this));
   }
 

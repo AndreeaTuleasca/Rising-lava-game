@@ -10,7 +10,7 @@ export default function GameEngine (type) {
     }
 
     function UpdateLavaSpeed(state){
-        return state.lavaSpeed + 1;
+        return state.lavaSpeed + 0.1;
     }
 
     function UpdateActorPosition(actorPosition){
@@ -18,7 +18,7 @@ export default function GameEngine (type) {
     }
 
     function GetNextWord(numWordsTypedSuccessfully){
-        return randomWord(Math.floor(numWordsTypedSuccessfully/10));
+        return randomWord(Math.floor(numWordsTypedSuccessfully/10) + 3);
     }
 
     // To be called once a word-typing engine
@@ -26,9 +26,10 @@ export default function GameEngine (type) {
         let res = {
             score: UpdateScore(state),
             lavaSpeed: UpdateLavaSpeed(state),
-            word: GetNextWord(state.numWordsTypedSuccessfully),
+            word: GetNextWord(state.wordsTypedSuccessfully),
             actorPosition: UpdateActorPosition(state.actorPosition),
-            matchedLetters: 0
+            matchedLetters: 0,
+            wordsTypedSuccessfully: state.wordsTypedSuccessfully + 1
         }
 
         if ((res.actorPosition - state.hiddenPlatforms) >= 7){
@@ -44,7 +45,7 @@ export default function GameEngine (type) {
 
         const actorPosition = (state.actorPosition+1) * state.gridSegmentHeight;
         var distance = actorPosition - res.lavaHeight; 
-        if(distance < 0){
+        if(distance < -15){
             res.gameState = 'game-over';
             res.timeScale = 0;
         }

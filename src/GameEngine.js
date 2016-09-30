@@ -10,7 +10,7 @@ export default function GameEngine (type) {
     }
 
     function UpdateLavaSpeed(state){
-        return state.lavaSpeed + 0.1;
+        return state.lavaSpeed + 0.05;
     }
 
     function UpdateActorPosition(actorPosition){

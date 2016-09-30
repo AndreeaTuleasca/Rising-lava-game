@@ -1,9 +1,18 @@
+var classNames = require('classnames');
+
 import React, { Component } from 'react';
 
 class Platform extends Component {
     render(){
-        return (
-            <div className="platform">this is platform {this.props.index}</div>
+      const className = classNames([
+        "platform",
+        "sprite",
+        "row-"+this.props.index,
+        "col-"+(this.props.index % 2)
+      ]);
+
+      return (
+            <div className={className}></div>
         );
     }
 }

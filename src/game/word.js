@@ -1,9 +1,17 @@
+var classNames = require('classnames');
+
 import React, { Component } from 'react';
 
 class Word extends Component {
     render(){
+      const className = classNames([
+        "word",
+        "sprite",
+        "row-"+this.props.position,
+        "col-"+(this.props.position % 2)
+      ]);
         return (
-            <div className="word">this is word placed at: {this.props.position}</div>
+            <div className={className}>foobar</div>
         );
     }
 }

@@ -15,3 +15,66 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.game-board {
+  width: 400px;
+  height: 600px;
+  margin: auto;
+  padding: 2em;
+  border: solid 2px #ccc;
+  position: relative;
+  margin-top: 1em;
+}
+
+.game-board .sprite {
+  position: absolute;
+}
+
+.game-board .lava {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: url(img/lava.png);
+  background-size: 30%;
+}
+
+.game-board .platform {
+  width: 33%;
+  height: 10px;
+  background: gold;
+  margin-left: 10%;
+  margin-top: 50px;
+}
+
+.game-board .actor {
+  width: 50px;
+  height: 65px;
+  background: url(img/actor.png);
+  background-size: 100%;
+  margin-top: -15px;
+  margin-left: 95px;
+}
+
+.game-board .word {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-family: consolas;
+  color: grey;
+  margin-left: 10%;
+  margin-top: 27px;
+}
+
+.game-board .row-0 { top: 60px; }
+.game-board .row-1 { top: 120px; }
+.game-board .row-2 { top: 180px; }
+.game-board .row-3 { top: 240px; }
+.game-board .row-4 { top: 300px; }
+.game-board .row-5 { top: 360px; }
+.game-board .row-6 { top: 420px; }
+.game-board .row-7 { top: 480px; }
+.game-board .row-8 { top: 540px; }
+.game-board .row-9 { top: 600px; }
+
+.game-board .col-0 { left: 0; }
+.game-board .col-1 { left: 50%; }

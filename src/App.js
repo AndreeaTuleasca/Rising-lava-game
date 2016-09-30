@@ -11,8 +11,9 @@ class App extends Component {
     super();
     this.gameEngine = new GameEngine();
     this.state = {
+      gridSegmentHeight: 60, // constant
       actorPosition: 6, // word position is always actor position + 1
-      lavaPosition: 0,
+      lavaHeight: 200,
       lavaSpeed: 10,
       score: 0,
       wordsTypedSuccessfully: 0,

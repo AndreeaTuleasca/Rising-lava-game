@@ -16,6 +16,7 @@ class GameBoard extends Component {
         }
 
         const actorIndex = this.props.actorPosition - this.props.hiddenPlatforms;
+        const effectiveLavaHeight = this.props.lavaHeight - (this.props.gridSegmentHeight * this.props.hiddenPlatforms)
 
         return (
             <div className="game-board">
@@ -24,7 +25,7 @@ class GameBoard extends Component {
                 ))}
                 <Actor position={this.props.actorPosition} index={actorIndex} />
                 <Word position={this.props.actorPosition+1} index={actorIndex+1} />
-                <Lava position="{this.props.lavaPosition}" timeScale="{this.props.timeScale}" />
+                <Lava height={effectiveLavaHeight} />
             </div>
         );
     }

@@ -5,6 +5,7 @@ class ScoreDisplay extends Component {
         return (
             <div className="score-display">
             Score: {this.props.score}
+            { this.props.highestScore ? (" / Highest: " + this.props.highestScore) : "" }
             </div>
         );
     }

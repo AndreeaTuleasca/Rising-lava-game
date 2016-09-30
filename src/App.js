@@ -43,7 +43,6 @@ class App extends Component {
         <ScoreDisplay score={this.state.score}/>
         <DistanceDisplay distance={this.state.distance}/>
         <GameBoard {...this.state}/>
-        <button onClick={this.state.next.bind(this)}>Move up</button>
       </div>
     );
   }
@@ -54,14 +53,13 @@ class App extends Component {
       0;
     this.setState({matchedLetters}); 
 
-
     if(this.state.word.length === matchedLetters){
-        console.log('word correct');
+        this.next();
     }
   }
   next(){
     const nextState = this.gameEngine.Next(this.state);
-    this.setState({state: nextState});
+    this.setState(nextState);
   }
 
   updateDistance(){

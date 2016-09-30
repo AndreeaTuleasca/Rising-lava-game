@@ -23,14 +23,18 @@ export default function GameEngine (type) {
 
     // To be called once a word-typing engine
     this.Next = function(state){
-        state.currentScore = UpdateScore(state.score, state.currentMultiplier, state.currentWord);
-        state.currentLavaSpeed = UpdateLavaSpeed(state.currentLavaSpeed);
-        state.currentWord = GetNextWord(state.numWordsTypedSuccessfully);
-        state.actorPosition = UpdateActorPosition(state.actorPosition);
-        if ((state.actorPosition - state.hiddenPlatforms) >= 7){
-            state.hiddenPlatforms += 1;
+        let res = {
+            score: UpdateScore(state.score, state.currentMultiplier, state.currentWord),
+            lavaSpeed: UpdateLavaSpeed(state.currentLavaSpeed),
+            word: GetNextWord(state.numWordsTypedSuccessfully),
+            actorPosition: UpdateActorPosition(state.actorPosition),
+            matchedLetters: 0
         }
-        return state;
+
+        if ((res.actorPosition - state.hiddenPlatforms) >= 7){
+            res.hiddenPlatforms = state.hiddenPlatforms + 1;
+        }
+        return res;
     };
 
     // To be called by lava to update GUI

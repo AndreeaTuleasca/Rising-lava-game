@@ -46,13 +46,17 @@ export default function GameEngine (type) {
     };
 
     this.update= function(state){
-        let res = {
-            lavaHeight: state.lavaHeight + (state.lavaSpeed * state.timeScale) 
-        };
+        var lavaHeight = state.lavaHeight + (state.lavaSpeed * state.timeScale);
 
         const actorPosition = (state.actorPosition+1) * state.gridSegmentHeight;
-        var distance = actorPosition - res.lavaHeight; 
-        if(distance < -15){
+        var distance = Math.round(actorPosition - lavaHeight);
+        
+        let res = {
+            lavaHeight: lavaHeight,
+            distance: distance
+        };
+
+        if(distance <= 0){
             res.gameState = 'game-over';
             res.timeScale = 0;
         }

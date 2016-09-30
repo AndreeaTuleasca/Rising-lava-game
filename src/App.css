@@ -24,6 +24,8 @@
   border: solid 2px #ccc;
   position: relative;
   margin-top: 1em;
+  background: url(img/background.png);
+  background-size: 105%;
 }
 
 .game-board .sprite {
@@ -35,18 +37,37 @@
   left: 0;
   right: 0;
   height: 80px;
-  background: url(img/lava.png);
+  background: url(img/lava.gif);
   background-size: 30%;
   z-index: 10;
+  box-shadow: inset 0 11px 43px #fec17e;
 }
+
+.game-board .lava:before {
+  content: "";
+  height: 300%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: -300%;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+40,ffffff+57,ebf2a7+81,f2c191+96&0+43,1+100 */
+  background: -moz-linear-gradient(top,  rgba(255,255,255,0) 40%, rgba(255,255,255,0) 43%, rgba(255,255,255,0.25) 57%, rgba(235,242,167,0.67) 81%, rgba(242,193,145,0.93) 96%, rgba(242,193,145,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 40%,rgba(255,255,255,0) 43%,rgba(255,255,255,0.25) 57%,rgba(235,242,167,0.67) 81%,rgba(242,193,145,0.93) 96%,rgba(242,193,145,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(255,255,255,0) 40%,rgba(255,255,255,0) 43%,rgba(255,255,255,0.25) 57%,rgba(235,242,167,0.67) 81%,rgba(242,193,145,0.93) 96%,rgba(242,193,145,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#f2c191',GradientType=0 ); /* IE6-9 */
+  opacity: 0.6;
+}
+
 
 .game-board .platform {
   width: 33%;
   height: 10px;
-  background: gold;
+  background: url(img/stone.png);
+  background-size: 50%;
   margin-left: 10%;
   margin-top: 50px;
   z-index: 20;
+  box-shadow: 2px -1px 0px #a7a7a7, 3px 4px 7px #757575;
 }
 
 .game-board .actor {
@@ -54,7 +75,7 @@
   height: 65px;
   background: url(img/actor.png);
   background-size: 100%;
-  margin-top: -15px;
+  margin-top: -12px;
   margin-left: 95px;
   z-index: 30;
 }

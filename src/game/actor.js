@@ -1,9 +1,17 @@
+var classNames = require('classnames');
+
 import React, { Component } from 'react';
 
 class Actor extends Component {
     render(){
+        const className = classNames([
+          "actor",
+          "sprite",
+          "row-"+this.props.index,
+          "col-"+(this.props.position % 2)
+        ]);
         return (
-            <div className="actor">this is actor placed at: {this.props.position}</div>
+            <div className={className}></div>
         );
     }
 }

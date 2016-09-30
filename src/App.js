@@ -11,7 +11,7 @@ class App extends Component {
     super();
     this.gameEngine = new GameEngine();
     this.state = {
-      actorPosition: 7, // word position is always actor position + 1
+      actorPosition: 6, // word position is always actor position + 1
       lavaPosition: 0,
       lavaSpeed: 10,
       score: 0,

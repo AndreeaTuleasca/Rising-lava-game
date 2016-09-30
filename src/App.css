@@ -148,6 +148,16 @@ body {
   float: right;
 }
 
+.footer {
+  margin-top: 0.5rem;
+  text-align: center;
+  margin: 0 auto;
+  font-family: 'Hanalei Fill', cursive;
+  text-shadow: 2px 2px 2px black;
+  font-size: 1.5rem;
+  color: #87fa87;
+}
+
 .game-board .row-9 { top: 0px; }
 .game-board .row-8 { top: 60px; }
 .game-board .row-7 { top: 120px; }

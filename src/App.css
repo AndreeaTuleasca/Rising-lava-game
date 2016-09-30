@@ -102,7 +102,7 @@ body {
 .game-board.game-over .actor {
   height: 50px;
   background-image: url(img/skull.png);
-  animation: deathFrames linear 2s;
+  animation: deathFrames linear 0.5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards; 
 }

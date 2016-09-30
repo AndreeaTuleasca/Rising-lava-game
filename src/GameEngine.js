@@ -10,14 +10,21 @@ export default function GameEngine (type) {
     }
 
     function UpdateLavaSpeed(state){
-        return state.lavaSpeed + 0.1;
+        return state.lavaSpeed + 0.05;
     }
 
     function UpdateActorPosition(actorPosition){
         return actorPosition + 1;
     }
 
-    function GetNextWord(numWordsTypedSuccessfully){
+    this.startGame = function(){
+        return {
+            timeScale: 1,
+            gameState: 'in-progress'
+        };    
+    }
+
+    this.GetNextWord = function(numWordsTypedSuccessfully){
         return randomWord(Math.floor(numWordsTypedSuccessfully/10) + 3);
     }
 
@@ -26,7 +33,7 @@ export default function GameEngine (type) {
         let res = {
             score: UpdateScore(state),
             lavaSpeed: UpdateLavaSpeed(state),
-            word: GetNextWord(state.wordsTypedSuccessfully),
+            word: this.GetNextWord(state.wordsTypedSuccessfully),
             actorPosition: UpdateActorPosition(state.actorPosition),
             matchedLetters: 0,
             wordsTypedSuccessfully: state.wordsTypedSuccessfully + 1
@@ -39,13 +46,17 @@ export default function GameEngine (type) {
     };
 
     this.update= function(state){
-        let res = {
-            lavaHeight: state.lavaHeight + (state.lavaSpeed * state.timeScale) 
-        };
+        var lavaHeight = state.lavaHeight + (state.lavaSpeed * state.timeScale);
 
         const actorPosition = (state.actorPosition+1) * state.gridSegmentHeight;
-        var distance = actorPosition - res.lavaHeight; 
-        if(distance < -15){
+        var distance = Math.round(actorPosition - lavaHeight);
+        
+        let res = {
+            lavaHeight: lavaHeight,
+            distance: distance
+        };
+
+        if(distance <= 0){
             res.gameState = 'game-over';
             res.timeScale = 0;
         }

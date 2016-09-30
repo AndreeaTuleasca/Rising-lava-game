@@ -131,7 +131,7 @@ body {
 
 .game-info {
   overflow: hidden;
-  width: 600px;
+  width: 750px;
   margin: 0 auto;
 }
 
@@ -149,7 +149,7 @@ body {
 }
 
 .footer {
-  margin-top: 1rem;
+  padding-top: 1rem;
   text-align: center;
   margin: 0 auto;
   font-family: 'Carter One', cursive;

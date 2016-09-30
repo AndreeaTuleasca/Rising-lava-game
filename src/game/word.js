@@ -17,10 +17,15 @@ class Word extends Component {
     }
 
     handleChange(event){
-        // let word = event.target.value
-        // let lastLetterIndex = typedWord.length-1;
-        // let lastLetter = typedWord.charAt(lastLetterIndex);
-        this.setState({typedWord: event.target.value}); 
+         let word = event.target.value;
+         let lastLetterIndex = word.length-1;
+         let lastLetter = word.charAt(lastLetterIndex);
+         if(this.word.charAt(lastLetterIndex) === lastLetter){
+            this.setState({typedWord: event.target.value}); 
+         }
+         if(this.word === word){
+             console.log('word correct');
+         }
     }
 }
 

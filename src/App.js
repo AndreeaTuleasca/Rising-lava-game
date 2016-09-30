@@ -45,8 +45,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ScoreDisplay score={this.state.score}/>
-        <DistanceDisplay distance={this.state.distance}/>
+        <div className="game-info">
+          <ScoreDisplay score={this.state.score}/>
+          <DistanceDisplay distance={this.state.distance}/>
+        </div>
         <GameBoard {...this.state}/>
       </div>
     );

@@ -11,6 +11,8 @@ class App extends Component {
     super();
     this.gameEngine = new GameEngine();
     this.state = {
+      word: "foobar",
+      matchedLetters: 0,
       gridSegmentHeight: 60, // constant
       actorPosition: 3, // word position is always actor position + 1
       lavaHeight: 200,
@@ -27,6 +29,14 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    document.addEventListener('keyup', this.checkWord.bind(this));
+  }
+
+  componentWillUnmout(){
+    document.removeEventListener('keyup', this.checkWord.bind(this));
+  }
+
   render() {
     return (
       <div className="App">
@@ -38,6 +48,17 @@ class App extends Component {
     );
   }
 
+  checkWord(event){
+    let matchedLetters = this.state.word.charAt(this.state.matchedLetters) === event.key ?
+      this.state.matchedLetters + 1: 
+      0;
+    this.setState({matchedLetters}); 
+
+
+    if(this.state.word.length === matchedLetters){
+        console.log('word correct');
+    }
+  }
   next(){
     const nextState = this.gameEngine.Next(this.state);
     this.setState({state: nextState});

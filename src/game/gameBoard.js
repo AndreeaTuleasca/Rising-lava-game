@@ -24,7 +24,7 @@ class GameBoard extends Component {
                     <Platform key={p.index} {...p} />
                 ))}
                 <Actor position={this.props.actorPosition} index={actorIndex} />
-                <Word position={this.props.actorPosition+1} index={actorIndex+1} />
+                <Word position={this.props.actorPosition+1} index={actorIndex+1} matchedLetters={this.props.matchedLetters} word={this.props.word}/>
                 <Lava height={effectiveLavaHeight} />
             </div>
         );

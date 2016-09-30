@@ -86,7 +86,12 @@
   margin-left: 95px;
   z-index: 10000;
   animation: fidgetFrames linear 0.5s;
-  animation-iteration-count:infinite;
+  animation-iteration-count:infinite; 
+}
+
+.game-board.game-over .actor {
+  height: 50px;
+  background-image: url(img/skull.png);  
 }
 
 @keyframes fidgetFrames {

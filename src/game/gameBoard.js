@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+var classNames = require('classnames');
+
 import Lava from './lava'
 import Platform from './platform'
 import Word from './word'
@@ -18,8 +20,10 @@ class GameBoard extends Component {
         const actorIndex = this.props.actorPosition - this.props.hiddenPlatforms;
         const effectiveLavaHeight = Math.max(this.props.lavaHeight - (this.props.gridSegmentHeight * this.props.hiddenPlatforms), 0);
 
+        const classes = classNames(["game-board", this.props.gameState]);
+
         return (
-            <div className="game-board">
+            <div className={classes}>
                 {platforms.map(p => (
                     <Platform key={p.index} {...p} />
                 ))}

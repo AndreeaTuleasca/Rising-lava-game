@@ -17,7 +17,7 @@ export default function GameEngine (type) {
         return actorPosition + 1;
     }
 
-    function GetNextWord(numWordsTypedSuccessfully){
+    this.GetNextWord = function(numWordsTypedSuccessfully){
         return randomWord(Math.floor(numWordsTypedSuccessfully/10) + 3);
     }
 
@@ -26,7 +26,7 @@ export default function GameEngine (type) {
         let res = {
             score: UpdateScore(state),
             lavaSpeed: UpdateLavaSpeed(state),
-            word: GetNextWord(state.wordsTypedSuccessfully),
+            word: this.GetNextWord(state.wordsTypedSuccessfully),
             actorPosition: UpdateActorPosition(state.actorPosition),
             matchedLetters: 0,
             wordsTypedSuccessfully: state.wordsTypedSuccessfully + 1

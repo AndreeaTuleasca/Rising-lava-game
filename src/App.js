@@ -11,7 +11,7 @@ class App extends Component {
     super();
     this.gameEngine = new GameEngine();
     this.state = {
-      word: "foobar",
+      word: this.gameEngine.GetNextWord(0),
       matchedLetters: 0,
       gridSegmentHeight: 60, // constant
       actorPosition: 3, // word position is always actor position + 1

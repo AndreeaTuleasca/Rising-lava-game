@@ -7,11 +7,12 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      actorPlatformIndex: 0, // word position is always actor position + 1
+      actorPosition: 7, // word position is always actor position + 1
       lavaPosition: 0,
       score: 0,
       timeScale: 1, // double between 0 and 1,
-      gameState: 'not-started' // in-progress, game-over,
+      gameState: 'not-started', // in-progress, game-over,
+      hiddenPlatforms: 2, // the number platforms that have gone out of the view
     }
   }
 

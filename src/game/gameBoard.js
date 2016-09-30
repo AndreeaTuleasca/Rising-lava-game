@@ -8,19 +8,22 @@ import Actor from './actor'
 class GameBoard extends Component {
     render(){
         const platforms = [];
-        for(let i = this.props.actorPlatformIndex + 8; i >= Math.max(0, this.props.actorPlatformIndex - 1); i--){
-            platforms.push({ index: i });
+        for(let i = 0; i < 10; i++){
+            platforms.push({
+              position: this.props.hiddenPlatforms + i,
+              index: i
+            });
         }
 
-        console.log(platforms);
+        const actorIndex = this.props.actorPosition - this.props.hiddenPlatforms;
 
         return (
             <div className="game-board">
                 {platforms.map(p => (
                     <Platform key={p.index} {...p} />
                 ))}
-                <Actor position={this.props.actorPlatformIndex} />
-                <Word position={this.props.actorPlatformIndex+1} />
+                <Actor position={this.props.actorPosition} index={actorIndex} />
+                <Word position={this.props.actorPosition+1} index={actorIndex+1} />
                 <Lava position="{this.props.lavaPosition}" timeScale="{this.props.timeScale}" />
             </div>
         );

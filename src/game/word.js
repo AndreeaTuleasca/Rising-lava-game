@@ -7,7 +7,7 @@ class Word extends Component {
       const className = classNames([
         "word",
         "sprite",
-        "row-"+this.props.position,
+        "row-"+this.props.index,
         "col-"+(this.props.position % 2)
       ]);
         return (

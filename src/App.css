@@ -37,6 +37,7 @@
   height: 80px;
   background: url(img/lava.png);
   background-size: 30%;
+  z-index: 10;
 }
 
 .game-board .platform {
@@ -45,6 +46,7 @@
   background: gold;
   margin-left: 10%;
   margin-top: 50px;
+  z-index: 20;
 }
 
 .game-board .actor {
@@ -54,6 +56,11 @@
   background-size: 100%;
   margin-top: -15px;
   margin-left: 95px;
+  z-index: 30;
+}
+
+.game-board .actor.col-1 {
+  transform: scaleX(-1);
 }
 
 .game-board .word {
@@ -63,18 +70,19 @@
   color: grey;
   margin-left: 10%;
   margin-top: 27px;
+  z-index: 30;
 }
 
-.game-board .row-0 { top: 60px; }
-.game-board .row-1 { top: 120px; }
-.game-board .row-2 { top: 180px; }
-.game-board .row-3 { top: 240px; }
+.game-board .row-9 { top: 0px; }
+.game-board .row-8 { top: 60px; }
+.game-board .row-7 { top: 120px; }
+.game-board .row-6 { top: 180px; }
+.game-board .row-5 { top: 240px; }
 .game-board .row-4 { top: 300px; }
-.game-board .row-5 { top: 360px; }
-.game-board .row-6 { top: 420px; }
-.game-board .row-7 { top: 480px; }
-.game-board .row-8 { top: 540px; }
-.game-board .row-9 { top: 600px; }
+.game-board .row-3 { top: 360px; }
+.game-board .row-2 { top: 420px; }
+.game-board .row-1 { top: 480px; }
+.game-board .row-0 { top: 540px; }
 
 .game-board .col-0 { left: 0; }
 .game-board .col-1 { left: 50%; }

@@ -8,7 +8,7 @@ class Platform extends Component {
         "platform",
         "sprite",
         "row-"+this.props.index,
-        "col-"+(this.props.index % 2)
+        "col-"+(this.props.position % 2)
       ]);
 
       return (

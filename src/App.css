@@ -149,12 +149,12 @@ body {
 }
 
 .footer {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   text-align: center;
   margin: 0 auto;
   font-family: 'Carter One', cursive;
   text-shadow: 2px 2px 2px black;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #87fa87;
 }
 

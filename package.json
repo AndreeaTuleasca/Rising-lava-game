@@ -2,14 +2,12 @@
   "name": "hello-world",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "0.6.1"
-  },
   "dependencies": {
     "classnames": "^2.2.5",
     "random-word-by-length": "^0.1.0",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "react-scripts": "0.6.1"
   },
   "scripts": {
     "start": "./node_modules/.bin/react-scripts start",

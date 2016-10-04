@@ -99,7 +99,7 @@ body {
   z-index: 1000;
 }
 
-.game-board.game-over .actor {
+.game-board .game-over .actor {
   height: 50px;
   background-image: url(img/skull.png);
   animation: deathFrames linear 0.5s;

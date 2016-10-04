@@ -21,17 +21,19 @@ class GameBoard extends Component {
         const actorIndex = this.props.actorPosition - this.props.hiddenPlatforms;
         const effectiveLavaHeight = Math.max(this.props.lavaHeight - (this.props.gridSegmentHeight * this.props.hiddenPlatforms), 0);
 
-        const classes = classNames(["game-board", this.props.gameState]);
+        const classes = classNames([this.props.gameState]);
 
         return (
-            <div className={classes}>
-                {platforms.map(p => (
-                    <Platform key={p.index} {...p} />
-                ))}
-                <Actor position={this.props.actorPosition} index={actorIndex} />
-                <Word position={this.props.actorPosition+1} index={actorIndex+1} matchedLetters={this.props.matchedLetters} word={this.props.word}/>
-                <Lava height={effectiveLavaHeight} />
+            <div className="game-board">
                 <PauseOverlay timeScale={this.props.timeScale} gameState={this.props.gameState} />
+                <div className={classes}>
+                    {platforms.map(p => (
+                        <Platform key={p.index} {...p} />
+                    ))}
+                    <Actor position={this.props.actorPosition} index={actorIndex} />
+                    <Word position={this.props.actorPosition+1} index={actorIndex+1} matchedLetters={this.props.matchedLetters} word={this.props.word}/>
+                    <Lava height={effectiveLavaHeight} />
+                </div>
             </div>
         );
     }

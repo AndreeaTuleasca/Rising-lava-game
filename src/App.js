@@ -10,30 +10,10 @@ class App extends Component {
   constructor(){
     super();
     this.gameEngine = new GameEngine();
-    this.state = {
-      word: this.gameEngine.GetNextWord(0),
-      matchedLetters: 0,
-      gridSegmentHeight: 60, // constant
-      actorPosition: 3, // word position is always actor position + 1
-      lavaHeight: 100,
-      lavaSpeed: 1,
-      score: 0,
-      highestScore: +localStorage.getItem('highestScore'),
-      wordsTypedSuccessfully: 0,
-      scoreMultiplier: 1,
-      distance: 0, // distance multipler * (lavaPosition - actorPlatformIndex) ??
-      timeScale: 0, // double between 0 and 1,
-      gameState: 'not-started', // in-progress, game-over,
-      hiddenPlatforms: 0, // the number platforms that have gone out of the view
-      next: this.next // This is for the word-typing component to cal
-    }
   }
 
-  update(){ this.updateState(this.gameEngine.update); }
-
-  updateState(fn){
-    var updatedState = fn(this.state);
-    this.setState(updatedState);
+  componentWillMount(){
+    this.setState(this.gameEngine.setInitialState());
   }
 
   componentDidMount(){
@@ -41,7 +21,7 @@ class App extends Component {
     document.addEventListener('keyup', this.checkWord.bind(this));
   }
 
-  componentWillUnmout(){
+  componentWillUnmount(){
     document.removeEventListener('keyup', this.checkWord.bind(this));
   }
 
@@ -63,6 +43,11 @@ class App extends Component {
       this.setState(nextState);
     }
 
+    if(this.state.gameState === 'game-over' && event.key === "Enter"){
+        this.updateState(this.gameEngine.setInitialState);
+        return;
+    }
+
     if(this.state.gameState === 'not-started'){
       let nextState = this.gameEngine.startGame();
       this.setState(nextState);
@@ -81,9 +66,14 @@ class App extends Component {
         this.next();
     }
   }
-  next(){
-    const nextState = this.gameEngine.Next(this.state);
-    this.setState(nextState);
+
+  update(){this.updateState(this.gameEngine.update);}
+
+  next(){this.updateState(this.gameEngine.next);}
+
+  updateState(fn){
+    var updatedState = fn(this.state);
+    this.setState(updatedState);
   }
 }
 

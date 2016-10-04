@@ -25,7 +25,7 @@ class Word extends Component {
                     classes = classNames(classes)
 
                     return (
-                        <span className={classes}>{char}</span>
+                        <span className={classes} key={index}>{char}</span>
                     )   
                 })}
             </div>

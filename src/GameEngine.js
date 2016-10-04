@@ -30,7 +30,8 @@ export default function GameEngine (type) {
             word: getNextWord(state.wordsTypedSuccessfully),
             actorPosition: updateActorPosition(state.actorPosition),
             matchedLetters: 0,
-            wordsTypedSuccessfully: state.wordsTypedSuccessfully + 1
+            wordsTypedSuccessfully: state.wordsTypedSuccessfully + 1,
+            scoreMultiplier: 1
         }
 
         if ((res.actorPosition - state.hiddenPlatforms) >= 7){
@@ -75,6 +76,15 @@ export default function GameEngine (type) {
             gameState: state.timeScale === 0 ? "in-progress" : "paused",
             timeScale: state.timeScale === 0 ? 1 : 0
         };
+    }
+
+    this.skipWords = (state, wordsNo) => {
+        let actorPosition = state.actorPosition;    
+        for(var i=0;i<=wordsNo;i++){
+            state = this.next(state);
+        }
+        state.actorPosition = actorPosition;
+        return state;
     }
 
     function updateScore(state){

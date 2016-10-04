@@ -6,10 +6,15 @@ import GameBoard from './game/gameBoard'
 import ScoreDisplay from './gui/scoreDisplay'
 import DistanceDisplay from './gui/distanceDisplay'
 
+var Konami = require("konami-js");
+
 class App extends Component {
   constructor(){
     super();
     this.gameEngine = new GameEngine();
+    new Konami(() => {
+      this.skipWords(30);
+    });
   }
 
   componentWillMount(){
@@ -65,6 +70,11 @@ class App extends Component {
     if(this.state.word.length === matchedLetters){
         this.next();
     }
+  }
+
+  skipWords(wordsNo){
+    let nextState = this.gameEngine.skipWords(this.state, wordsNo);
+    this.setState(nextState);
   }
 
   update(){this.updateState(this.gameEngine.update);}

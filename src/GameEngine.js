@@ -79,11 +79,13 @@ export default function GameEngine (type) {
     }
 
     this.skipWords = (state, wordsNo) => {
-        let actorPosition = state.actorPosition;    
+        let lavaSpeed = state.lavaSpeed;
+        let actorPosition = state.actorPosition;     
         for(var i=0;i<=wordsNo;i++){
             state = this.next(state);
         }
-        state.actorPosition = actorPosition;
+        state.lavaSpeed = lavaSpeed;
+        state.actorPosition = actorPosition +3;
         return state;
     }
 

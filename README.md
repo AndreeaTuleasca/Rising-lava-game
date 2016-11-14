@@ -1,4 +1,5 @@
-"# Rising-lava-game" 
+##Rising lava Game
+ You can actually play it at: https://risinglava.herokuapp.com/
 
 ## Components
 
@@ -10,6 +11,6 @@
         - Platform[]
         - Actor
         - Word
-        - lava
+        - Lava
 
         
